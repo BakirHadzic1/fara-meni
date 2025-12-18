@@ -39,32 +39,24 @@ const menuData = [
       category: "🍿 Grickalice",
       items: [
         { name: "Smoki mali", price: "1.00" },
-        { name: "Smoki velki", price: "1.50" },
-        { name: "Kikiriki", price: "1.00" },
-        { name: "Kikiriki", price: "1.50" }
+        { name: "Smoki veliki", price: "1.50" },
+        { name: "Kikiriki mali", price: "1.00" },
+        { name: "Kikiriki veliki", price: "1.50" }
       ]
     }
   ];
   
   const menuDiv = document.getElementById("menu");
-  const searchInput = document.getElementById("search");
   
-  function renderMenu(filter = "") {
+  function renderMenu() {
     menuDiv.innerHTML = "";
   
     menuData.forEach(section => {
-      const filteredItems = section.items.filter(item =>
-        item.name.toLowerCase().includes(filter.toLowerCase())
-      );
-  
-      if (filteredItems.length === 0) return;
-  
       const card = document.createElement("div");
       card.className = "card";
-  
       card.innerHTML = `<h2>${section.category}</h2>`;
   
-      filteredItems.forEach(item => {
+      section.items.forEach(item => {
         const row = document.createElement("div");
         row.className = "item";
         row.innerHTML = `
@@ -78,9 +70,4 @@ const menuData = [
     });
   }
   
-  searchInput.addEventListener("input", e => {
-    renderMenu(e.target.value);
-  });
-  
   renderMenu();
-  
